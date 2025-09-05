@@ -1,18 +1,28 @@
-import React from 'react'
+import React, { use, useEffect } from 'react'
 import { food_items } from './food'
 // import { IoIosRadioButtonOn } from "react-icons/io";
 // import image1 from "./assets/image1.avif";
 import { LiaRupeeSignSolid } from "react-icons/lia";
+import { useContext } from 'react';
+import {dataContext} from './Context';
 
 
 
-const Foodcard = () => {
-  const [veg, setveg] = React.useState(true);
-  const type=food_items.food_type
+const Foodcard = () => { 
+
+  let {input ,setinput,food,setfood}=useContext(dataContext)
+  console.log("hello from food",input)
+  useEffect(()=>{
+    let newlist=food_items.filter((item)=>item.food_name.includes(input)||item.food_name.toLowerCase().includes(input) )
+    setfood(newlist)
+  }
+  ,[input])
+  
+
 
   return (
   <div className='flex flex-wrap overflow-auto justify-around '>
-    {food_items.map((items,index) =>(
+    {food.map((items,index) =>(
       
     <div key={items.id} className='bg-amber-50 rounded-lg  w-[240px] h-[300px] p-3 shadow-xl  m-5 ml-3 mr-3 transform transition-transform duration-200 hover:shadow-xl hover:scale-102 '>
 

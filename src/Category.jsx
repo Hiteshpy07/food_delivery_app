@@ -6,6 +6,11 @@ import { CiBowlNoodles } from "react-icons/ci";
 import { MdOutlineFoodBank } from "react-icons/md";
 import { GiFullPizza } from "react-icons/gi";
 import { GiHamburger } from "react-icons/gi";
+import { useContext } from 'react';
+import {dataContext} from './Context';
+
+
+
  const Categories = [
 {
     id:1,
@@ -48,10 +53,11 @@ import { GiHamburger } from "react-icons/gi";
 
 
 const Category = () => {
+    let {input ,setinput}=useContext(dataContext)
   return (
-    <div className='flex gap-15 ml-20'>
-        {Categories.map((item)=>(
-            <div className="bg-amber-50 w-[125px] h-[125px] mt-18 rounded-2xl transform transition-transform duration-200 hover:scale-105 shadow-xl ">
+    <div className={`flex gap-15 ml-20 ${!input?"block":"hidden"}`}>
+        {Categories.map((item,index)=>(
+            <div key={index} className="bg-amber-50 w-[125px] h-[125px] mt-18 rounded-2xl transform transition-transform duration-200 hover:scale-105 shadow-xl ">
                 <div>{item.icon}</div>
                 <div className='font-semibold flex justify-center mt-2'>{item.name}</div>
 
