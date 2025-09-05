@@ -8,10 +8,10 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className='bg-slate-500 w-full h-screen overflow-hidden '>
+    <div className='bg-slate-500 w-full h-full '>
   <Navbar/>
   <Category/>
-  {/* <Foodcard/> */}
+  <Foodcard/>
    </div>
   )
 }
