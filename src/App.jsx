@@ -11,7 +11,7 @@ import Cart from './Cart';
 
 function App() {
 
-  let {cartopen,setcartopen}=useContext(dataContext)
+  let {cartopen,setcartopen,cartitem}=useContext(dataContext)
 
   return (
     <div className='bg-slate-500 w-full h-full  '>
@@ -24,7 +24,10 @@ function App() {
     <span className='text-xl mt-1 ml-2 font-semibold'>Order items</span>
     <span className='cursor-pointer font-bold text-xl mt-2 mr-2 ' onClick={()=>setcartopen(false)}><RxCross1 /></span>
     </div>
-    <Cart/>
+    {cartitem.map((cartitems,id)=>(
+      <Cart key={cartitems.id} name={cartitems.name} image={cartitems.image}  price={cartitems.price} />
+    ))}
+    
   </div>
    </div>
 

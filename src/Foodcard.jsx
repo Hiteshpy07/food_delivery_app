@@ -10,7 +10,7 @@ import {dataContext} from './Context';
 
 const Foodcard = () => { 
 
-  let {input ,setinput,food,setfood}=useContext(dataContext)
+  let {input ,setinput,food,setfood,cartitem,setcartitem}=useContext(dataContext)
   console.log("hello from food",input)
   useEffect(()=>{
     let newlist=food_items.filter((item)=>item.food_name.includes(input)||item.food_name.toLowerCase().includes(input) )
@@ -18,6 +18,10 @@ const Foodcard = () => {
   }
   ,[input])
   
+  const addToCart = (item) => {
+    setcartitem(prev => [...prev, item]);
+    console.log(cartitem)
+  };
 
 
   return (
@@ -44,7 +48,14 @@ const Foodcard = () => {
 </div>
     </div>
 
-  <button type='button'  className=' bg-slate-800 w-[85%] rounded-lg ml-[7%] mt-2 h-[30px] text-amber-50 hover:bg-slate-600 transform transition-transform duration-200 hover:scale-105'>Add</button>
+  <button type='button'  className=' bg-slate-800 w-[85%] rounded-lg ml-[7%] mt-2 h-[30px] text-amber-50 hover:bg-slate-600 transform transition-transform duration-200 hover:scale-105' onClick={
+    // console.log(items)
+    // console.log("this is added in the cart")
+    // // setcartitem(prev => [...prev, items.id])
+    // setcartitem({items})
+    // console.log(cartitem)
+    () => addToCart({ id: items.id, name: items.food_name, image:items.food_image,price:items.price })
+  }>Add</button>
 
     </div>
     ))}
